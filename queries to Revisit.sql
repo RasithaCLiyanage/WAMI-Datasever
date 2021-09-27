@@ -7,3 +7,7 @@ select schema_name(t.schema_id) as schema_name,
 from sys.tables t
 order by schema_name,
          table_name;
+         
+         
+-- this is stored procedure query to rename table name in T-sql
+EXEC sp_rename '[dbo].[order_line_Legacy]', 'order_line_96586'
