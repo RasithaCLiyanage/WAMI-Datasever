@@ -11,7 +11,3 @@ order by schema_name,
          
 -- this is stored procedure query to rename table name in T-sql
 EXEC sp_rename '[dbo].[order_line_Legacy]', 'order_line_96586'
-
-
-
--- My Name is Rasitha
