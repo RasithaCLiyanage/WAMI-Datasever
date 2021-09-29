@@ -97,7 +97,8 @@
 				"typeProperties": {
 					"variableName": "storageName",
 					"value": [
-						"['Planes','Cars']"
+						"Planes",
+						"Cars"
 					]
 				}
 			}
