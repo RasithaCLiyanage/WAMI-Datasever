@@ -25,7 +25,14 @@
 						{
 							"name": "Copy data1",
 							"type": "Copy",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Lookup1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
@@ -67,7 +74,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"tableName": {
-											"value": "@variables('storageName')",
+											"value": "@activity('Lookup1').output.firstRow.table_name",
 											"type": "Expression"
 										}
 									}
@@ -79,12 +86,38 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
-											"value": "@concat(variables('storageName'),'-',utcnow(),'.csv')",
+											"value": "@concat(activity('Lookup1').output.firstRow.table_name,'-',utcnow(),'.csv')",
 											"type": "Expression"
 										}
 									}
 								}
 							]
+						},
+						{
+							"name": "Lookup1",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "select *\nfrom information_schema.tables\nwhere table_schema = 'dbo'\nand table_name = '@{item()}';",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "AzureSqlTablesInformation",
+									"type": "DatasetReference"
+								},
+								"firstRowOnly": true
+							}
 						}
 					]
 				}
