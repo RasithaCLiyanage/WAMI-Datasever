@@ -1,0 +1,9 @@
+{
+	"name": "hodw-datafactory",
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "832d996d-250e-440d-bb28-126a8544a84e",
+		"tenantId": "ee2f0fb6-2a83-479b-a19a-e9dba5704054"
+	}
+}
