@@ -1,0 +1,19 @@
+{
+	"name": "outputDataDataSet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedservice_wamidemostorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "data.txt",
+				"folderPath": "output",
+				"container": "demo"
+			}
+		}
+	}
+}
